@@ -1,0 +1,56 @@
+
+
+plugins {
+    id 'scala'
+}
+
+group 'io.akka'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+//List of variables used in the file.
+ext {
+    //Scala version variables.
+    scalaBinaryVersion = '2.12'
+    scalaMajor = '2.12'
+    scalaMinorVersion = '6'
+    scalaVersion = "$scalaBinaryVersion.$scalaMinorVersion"
+
+    //Junit Version
+    jUnitVersion = '4.12'
+
+    //Version for ScalaTest library.
+    scalaTestVersion = '3.0.1'
+
+
+    //Version for Akka.
+    akkaVersion = '2.5.14'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+    //Support to scala language.
+    implementation "org.scala-lang:scala-library:$scalaVersion"
+
+    //Basic support for Akka.
+    implementation "com.typesafe.akka:akka-actor_$scalaMajor:$akkaVersion"
+    implementation "com.typesafe.akka:akka-cluster_$scalaMajor:$akkaVersion"
+    implementation "com.typesafe.akka:akka-cluster-tools_$scalaMajor:$akkaVersion"
+
+    //Useful maybe?
+    compile group: 'com.typesafe.akka', name: 'akka-cluster-metrics_2.12', version: '2.5.17'
+
+    //Dependency for Junit.
+    testImplementation "junit:junit:$jUnitVersion"
+
+
+    // Dependency for ScalaTest.
+    testImplementation "org.scalatest:scalatest_2.12:$scalaTestVersion"
+}
